@@ -1,9 +1,9 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
 
-//Array of integers to hold value
+//array of integers to hold values
 int arr[20];
-int camp_count = 0; // number of comparison
+int cmp_count = 0; // number of comparasion
 int mov_count = 0; // number of data movement
 int n;
 
@@ -16,7 +16,7 @@ void input() {
 		if (n <= 20)
 			break;
 		else
-			cout << "\nMasukan panjang array adalah 20" << endl;
+			cout << "\nMasukkan panjang array adalah 0" << endl;
 	}
 
 	cout << "\n-------------------" << endl;
@@ -42,70 +42,78 @@ void swap(int x, int y)
 void q_short(int low, int high)
 {
 	int pivot, i, j;
-	if (low > high)//langkah 1
+	if (low > high) //Langkah 1
 		return;
 
-	//partition the list into two part
-	//one containing elements less that or equal to pivot
-	//outher containing elements greather than pivot
+	//Partition the list into two parts;
+	//One containing elements less that or equal to pivot
+	//Outher containing elements grather than pivot
 
-	pivot = arr[low];//langkah 2
+	pivot = arr[low]; //Langkah 2
 
-	i = low + 1;//langkah 3
-	j = high;//langkah 4
+	i = low + 1; //Langkah 3 
+	j = high; //Langkah 4
 
-	while (i <= j)//langkah 10
+	while (i <= j) //Langkah 10
 	{
-		//search for an element greather than pivot
-		while ((arr[i] <<= pivot) && (i <= high)) //langkah 5
+		//Search for an element greater than pivot 
+		while ((arr[i] <= pivot) && (i <= high)) //Langkah 6
 		{
-			i++; //langkah 6
-			camp_count++;
+			i++; //Langkah 6
+			cmp_count++;
 		}
-		camp_count++;
-		//search for an element less than or equal to pivot
-		while ((arr[j] > pivot) && (j >= low)) //langkah 7
+
+		cmp_count++;
+		//Search for an element less than or equal to pivot
+		while ((arr[j] > pivot) && (j >= low)) //Langkah 7
 		{
-			j--; //langkah 8
-			camp_count++;
+			j--; //Langkah 8
+			cmp_count++;
 		}
-		camp_count++;
-		if (i < j) //langkah 9
-			//if the greather element is on the left of the element
+		cmp_count++;
+		if (i < j) //Langkah 9
+			//If the greater element is on the left of the element
 		{
-			//swap the element at index i with the element at index j
+			//Swap the element at index i with the element at index j
 			swap(i, j);
 			mov_count++;
 		}
 	}
-	//j now contain the index of the last element in the sorted list
-	if (low < j) //langkah 11
+	//j now conntain the index of the last element in the sorted list
+	if (low < j) //Langkah 11
 	{
 		//Move the pivot to its correct possition in the list
 		swap(low, j);
 		mov_count++;
 	}
-	//sort the list on the left of pivot using quick sort
-	q_short(low, j - 1); //langkah 12
+	//Sort the list on the left of pivot using quick sort
+	q_short(low, j - 1); //Langkah 12
 
-	//sort the list on the right of pivot using quick sort
-	q_short(j + 1, high); //langkah 13
+	//Sort the list on the right of pivot using quick sort
+	q_short(j + 1, high); //Langkah 13
 
 
 }
-
-
 void display() {
-	cout << "\n----------" << endl;
+	cout << "\n---------------------------" << endl;
 	cout << "Sorted Array" << endl;
-	cout << "------------" << endl;
+	cout << "-----------------------------" << endl;
 
 	for (int i = 0; i < n; i++)
 	{
 		cout << arr[i] << " ";
 	}
-	{
-		cout << "\n\nNumber of comparasions: " << camp_count << endl;
-		cout << "Number of data movements: " << mov_count << endl;
-	}
+
+	cout << "\n\nNumber of comparasions: " << cmp_count << endl;
+	cout << "Number of data movements: " << mov_count << endl;
+}
+int main()
+{
+	input();
+	//Sort the array using quick sort
+	q_short(0, n - 1);
+	display();
+	system("pause");
+
+	return 0;
 }
