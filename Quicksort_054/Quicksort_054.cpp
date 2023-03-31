@@ -65,6 +65,17 @@ void q_short(int low, int high)
 		camp_count++;
 		//search for an element less than or equal to pivot
 		while ((arr[j] > pivot) && (j >= low)) //langkah 7
-		{ }
+		{
+			j--; //langkah 8
+			camp_count++;
+		}
+		camp_count++;
+		if (i < j) //langkah 9
+			//if the greather element is on the left of the element
+		{
+			//swap the element at index i with the element at index
+			swap(i, j);
+			mov_count++;
+		}
 	}
 }
