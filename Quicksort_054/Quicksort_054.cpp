@@ -73,9 +73,16 @@ void q_short(int low, int high)
 		if (i < j) //langkah 9
 			//if the greather element is on the left of the element
 		{
-			//swap the element at index i with the element at index
+			//swap the element at index i with the element at index j
 			swap(i, j);
 			mov_count++;
 		}
+	}
+	//j now contain the index of the last element in the sorted list
+	if (low < j) //langkah 11
+	{
+		//Move the pivot to its correct possition in the list
+		swap(low, j);
+		mov_count++;
 	}
 }
